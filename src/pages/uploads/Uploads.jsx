@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import { useBaseURL } from "../../Context/ContextApi";
 const Upload = () => {
+   const BASE_URL = useBaseURL()
   const navigate = useNavigate()
   const [file, setFile] = useState([]);
   const [data, setData] = useState({
@@ -45,7 +47,7 @@ const Upload = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:1002/items/addNew", formData, {
+      const response = await axios.post(`${BASE_URL}/items/addNew`, formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });

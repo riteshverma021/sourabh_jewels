@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+import { useBaseURL } from "../../Context/ContextApi";
 const SchemUpload = () => {
+   const BASE_URL = useBaseURL()
   const navigate = useNavigate()
   const [file, setFile] = useState(null); // Store the selected file
   const [previewURL, setPreviewURL] = useState(""); // For image preview
@@ -42,7 +43,7 @@ const SchemUpload = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:1002/luckydraw/scheme",
+        `${BASE_URL}/luckydraw/scheme`,
         formData,
         {
           withCredentials: true,

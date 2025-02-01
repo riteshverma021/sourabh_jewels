@@ -5,8 +5,9 @@ import axios from "axios";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-
+import { useBaseURL } from "./Context/ContextApi";
 const App = () => {
+   const BASE_URL = useBaseURL()
   const navigate = useNavigate();
   const [cookies] = useCookies(["admin"]);
   const [data, setData] = useState([]);
@@ -19,7 +20,7 @@ const App = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:1002/sourabhJewellers/items",
+        `${BASE_URL}/sourabhJewellers/items`,
         { params: { category } }
       );
       setData(response.data);
@@ -32,7 +33,7 @@ const App = () => {
 
   const fetchScheme = async () => {
     const response = await axios.get(
-      "http://localhost:1002/luckydraw/getScheme"
+      `${BASE_URL}/luckydraw/getScheme`
     );
     setScheme(response.data);
   };
@@ -64,7 +65,7 @@ const App = () => {
         ) : (
           scheme && (
             <img
-              src={`http://localhost:1002/${scheme.image.url}`}
+              src={`${BASE_URL}/${scheme.image.url}`}
               alt="Lucky Draw Scheme"
               className="mx-auto mt-6 rounded-lg shadow-lg max-w-md"
             />
@@ -103,7 +104,7 @@ const App = () => {
               className="group bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition duration-300 ease-in-out hover:shadow-2xl transform hover:scale-105"
             >
               <img
-                src={`http://localhost:1002/${item.image.url}`}
+                src={`${BASE_URL}/${item.image.url}`}
                 alt={item.name}
                 className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
               />

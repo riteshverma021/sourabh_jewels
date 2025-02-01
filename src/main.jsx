@@ -9,9 +9,13 @@ import Edit from "./pages/edit/Edit.jsx"
 import SchemUpload from './pages/LuckyDraw/SchemUpload.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
+import { BaseURLProvider } from './Context/ContextApi.jsx';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <BaseURLProvider>
 <>
+
 <ToastContainer />
 
 <Router>
@@ -20,6 +24,9 @@ createRoot(document.getElementById('root')).render(
 <Routes>
 
 <Route  path='/' element={<App/>}    />
+
+
+
 <Route path='/admin' element ={<Upload/>} />
 <Route  path='/listItem' element={<Display/>}  />
 <Route path="/items/:id/edit"  element={<Edit/>} />
@@ -33,7 +40,7 @@ createRoot(document.getElementById('root')).render(
 
 
 </>
-
+</BaseURLProvider>
 
 
   </StrictMode>

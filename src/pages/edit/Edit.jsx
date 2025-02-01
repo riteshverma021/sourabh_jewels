@@ -3,7 +3,9 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import { useBaseURL } from '../../Context/ContextApi';
 const Edit = () => {
+   const BASE_URL = useBaseURL()
   const navigate = useNavigate();
   const { id } = useParams();
   const [file, setFile] = useState(null);
@@ -18,7 +20,7 @@ const Edit = () => {
   useEffect(() => {
     const fetchedData = async () => {
       try {
-        const response = await axios.get(`http://localhost:1002/items/${id}/edit`, {
+        const response = await axios.get(`${BASE_URL}/items/${id}/edit`, {
           withCredentials: true,
         });
         setFetchData(response.data);
@@ -67,7 +69,7 @@ const Edit = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:1002/items/${id}`, formData, {
+      const response = await axios.put(`${BASE_URL}/items/${id}`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
